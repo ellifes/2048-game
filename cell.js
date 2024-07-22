@@ -1,5 +1,5 @@
-export class Cell{
-    constructor(gridElement, x, y){
+export class Cell {
+    constructor (gridElement, x, y) {
         const cell = document.createElement("div");
         cell.classList.add("cell");
         gridElement.append(cell);
@@ -7,39 +7,12 @@ export class Cell{
         this.y = y;
     }
 
-    linkTile(tile){
+    linkTile(tile) {
         tile.setXY(this.x, this.y);
         this.linkedTile = tile;
     }
 
-    unLinkTile(){
-        this.linkedTile = null;
-    }
-
-    isEmpty(){
+    isEmpty() {
         return !this.linkedTile;
-    }
-
-    unLinkTileForMerge(){
-        this.linkedTileForMerge = null;
-    }
-
-    linkTileForMerge(tile){
-        tile.setXY(this.x, this.y);
-        this.linkedTileForMerge = tile;
-    }
-
-    hasTileForMerge(){
-        return !!this.linkedTileForMerge;
-    }
-
-    canAccept(newTile){
-        return this.isEmpty() || (!this.hasTileForMerge() && this.linkedTile.value === newTile.value);
-    }
-
-    mergeTiles(){
-    this.linkedTile.setValue(this.linkedTile.value + this.linkedTileForMerge.value);
-    this.linkedTileForMerge.removeFromDOM();
-    this.unLinkTileForMerge();
     }
 }
